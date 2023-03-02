@@ -8,6 +8,7 @@ function App() {
   useEffect(() => {
     inputRef.current.focus();
   }, [])
+  
   return (
     <div className="App">
       <TodoApp ref={inputRef} textVal="To do"/>

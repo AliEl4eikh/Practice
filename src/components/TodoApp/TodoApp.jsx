@@ -1,10 +1,12 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, forwardRef } from "react";
 import reducer, { ADD_TODO } from "./reducer";
 import TodoContext from "./todoContext";
 import TodoList from "./TodoList";
 import "./styles.css";
 
-const TodoApp = () => {
+// if i want to control it from the parent 
+// i can use forwardRef
+const TodoApp = forwardRef((props, ref) => {
   const [id, setId] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const initialState = [];
@@ -29,6 +31,8 @@ const TodoApp = () => {
         <h1>Todo Form</h1>
         <form onSubmit={addTodo} className="input">
           <input
+            ref={ref}
+            placeholder={props.textVal}
             type="text"
             value={inputValue}
             onChange={(evt) => setInputValue(evt.target.value)}
@@ -39,6 +43,6 @@ const TodoApp = () => {
       </div>
     </TodoContext.Provider>
   );
-};
+});
 
 export default TodoApp;
